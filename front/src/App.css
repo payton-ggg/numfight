@@ -24,4 +24,12 @@ body {
   .permanent {
     font-family: "Permanent Marker", cursive;
   }
+  .btn {
+    background: rgb(164, 226, 222);
+    background: linear-gradient(
+      180deg,
+      rgba(164, 226, 222, 1) 0%,
+      rgba(101, 170, 188, 1) 100%
+    );
+  }
 }

@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const Marathon = ({ setShow }) => {
+  const [shown, setShown] = useState(false);
+
   return (
     <div className="bg-[#faebd9] flex flex-col items-center mt-[10%] mx-[20%] rounded-xl shadow-xl h-[50vh]">
       <div className="flex flex-row w-full justify-between">
@@ -17,8 +20,8 @@ const Marathon = ({ setShow }) => {
         >
           NUMFIGHT
         </div>
-        <div className="mt-14 text-center text-4xl border border-black py-3 rounded-3xl">
-          Start
+        <div className="mt-14 text-center text-4xl border border-blue-400 py-3 rounded-[36px] btn shadow-xl">
+          START
         </div>
       </div>
     </div>
