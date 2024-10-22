@@ -11,8 +11,11 @@ const StartScreen = ({ setShow }) => {
         </div>
       </div>
       <div className="">
-        <div className="text-5xl text-center text-slate-700">NUMFIGHT</div>
-        <div className="mt-4 pointer" onClick={setShow(false)}>
+        <div className="text-6xl text-center text-slate-700">NUMFIGHT</div>
+        <div
+          className="mt-4 hover:cursor-pointer"
+          onClick={() => setShow(false)}
+        >
           Marathon. As quickly as possible answear for 20 math`s exercise
         </div>
       </div>
