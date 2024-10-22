@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import GameOne from "./GameOne";
 
 const Marathon = ({ setShow }) => {
   const [shown, setShown] = useState(false);
@@ -20,9 +21,13 @@ const Marathon = ({ setShow }) => {
         >
           NUMFIGHT
         </div>
-        <div className="mt-14 text-center text-4xl border border-blue-400 py-3 rounded-[36px] btn shadow-xl">
-          START
-        </div>
+        {shown ? (
+          <div className="mt-14 text-center text-4xl border border-blue-400 py-3 rounded-[36px] btn shadow-xl">
+            START
+          </div>
+        ) : (
+          <GameOne setShown={setShown} />
+        )}
       </div>
     </div>
   );
