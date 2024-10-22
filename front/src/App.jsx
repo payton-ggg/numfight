@@ -5,11 +5,7 @@ import Marathon from "./components/Marathon";
 const App = () => {
   const [show, setShow] = useState(true);
 
-  return (
-    <>
-      <StartScreen setShow={setShow} />
-    </>
-  );
+  return <>{show ? <StartScreen setShow={setShow} /> : <Marathon />}</>;
 };
 
 export default App;
