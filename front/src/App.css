@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Permanent+Marker&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-image: url("http://res.cloudinary.com/platon1gg/image/upload/v1729537614/uo7y2gegwlectrmildhv.png");
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Kanit", serif;
+}
+
+@layer components {
+  .border-fancy-1 {
+    border-radius: 48% 52% 47% 53% / 45% 56% 44% 55%;
+  }
+  .border-fancy-2 {
+    border-radius: 48% 52% 52% 48% / 49% 46% 54% 51%;
+  }
+  .border-fancy-3 {
+    border-radius: 48% 52% 46% 54% / 43% 49% 51% 57%;
+  }
+  .permanent {
+    font-family: "Permanent Marker", cursive;
+  }
+}
