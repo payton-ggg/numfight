@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 
 const GameOne = () => {
   const [task, setTask] = useState(0);
