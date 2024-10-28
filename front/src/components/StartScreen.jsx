@@ -10,7 +10,7 @@ const StartScreen = ({ setShow }) => {
           <div className="h-4 w-4 border-fancy-3 bg-[#807b82] border-2 border-black" />
         </div>
       </div>
-      <div className="">
+      <div>
         <div className="text-6xl text-center text-slate-700">NUMFIGHT</div>
         <div
           className="mt-4 hover:cursor-pointer max-md:text-center"
