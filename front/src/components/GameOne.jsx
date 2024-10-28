@@ -46,15 +46,15 @@ const GameOne = () => {
     generateExample();
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      checkAnswer();
+    }
+  };
+
   useEffect(() => {
     generateExample();
   }, []);
-
-  const onPressEnter = () => {
-    addEventListener("enter", () => {
-      checkAnswer();
-    });
-  };
 
   return (
     <div className="flex justify-center items-center flex-col">
@@ -62,11 +62,14 @@ const GameOne = () => {
       <div className="text-center text-8xl">
         {num1} {operation} {num2}
       </div>
-      <div>
+      <div className="w-full max-w-sm min-w-[200px]">
         <input
+          className="w-full bg-transparent placeholder:text-red-400 text-red-700 text-sm border border-red-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-red-500 hover:border-red-300 shadow-sm focus:shadow"
+          placeholder="Type here..."
           type="number"
           value={userAnswer}
           onChange={(e) => setUserAnswer(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </div>
       <button
