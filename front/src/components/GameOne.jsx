@@ -7,7 +7,6 @@ const GameOne = () => {
   const [operation, setOperation] = useState("+");
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
-  const [message, setMessage] = useState("");
 
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -28,7 +27,6 @@ const GameOne = () => {
     setNum2(num2);
     setOperation(operation);
     setUserAnswer("");
-    setMessage("");
   };
 
   const checkAnswer = () => {
@@ -37,9 +35,6 @@ const GameOne = () => {
 
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
-      setMessage("Правильно!");
-    } else {
-      setMessage(`Неправильно! Правильный ответ: ${correctAnswer}`);
     }
 
     // Генерация нового примера после проверки
