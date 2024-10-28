@@ -53,9 +53,11 @@ const GameOne = () => {
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="text-center text-5xl">Score {score}</div>
-      <div className="text-center text-8xl">
-        {num1} {operation} {num2}
+      <div className="flex flex-row items-center gap-5">
+        <div className="text-center text-5xl">Score {score}</div>
+        <div className="text-center text-8xl">
+          {num1} {operation} {num2}
+        </div>
       </div>
       <div className="w-full max-w-sm min-w-[200px]">
         <input
