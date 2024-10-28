@@ -64,7 +64,7 @@ const GameOne = () => {
       </div>
       <div className="w-full max-w-sm min-w-[200px]">
         <input
-          className="w-full bg-transparent placeholder:text-red-400 text-red-700 text-sm border border-red-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-red-500 hover:border-red-300 shadow-sm focus:shadow"
+          className="w-full bg-transparent placeholder:text-green-400 text-green-700 text-sm border border-green-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-green-500 hover:border-green-600 shadow-sm focus:shadow"
           placeholder="Type here..."
           type="number"
           value={userAnswer}
