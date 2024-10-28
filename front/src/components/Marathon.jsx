@@ -26,7 +26,7 @@ const Marathon = ({ setShow }) => {
 };
 
 Marathon.propTypes = {
-  setShow: PropTypes.string.isRequired,
+  setShow: PropTypes.boolean,
 };
 
 export default Marathon;
