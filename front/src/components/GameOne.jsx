@@ -68,7 +68,7 @@ const GameOne = () => {
         />
       </div>
       <button
-        className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+        className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
         onClick={checkAnswer}
       >
         Enter
