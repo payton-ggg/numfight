@@ -50,6 +50,12 @@ const GameOne = () => {
     generateExample();
   }, []);
 
+  const onPressEnter = () => {
+    addEventListener("enter", () => {
+      checkAnswer();
+    });
+  };
+
   return (
     <div className="flex justify-center items-center flex-col">
       <div className="text-center text-5xl">Score {score}</div>
