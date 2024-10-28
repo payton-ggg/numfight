@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
 const GameOne = () => {
@@ -47,7 +48,6 @@ const GameOne = () => {
 
   useEffect(() => {
     generateExample();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
