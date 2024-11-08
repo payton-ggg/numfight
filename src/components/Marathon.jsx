@@ -1,5 +1,6 @@
 import GameOne from "./GameOne";
 
+// eslint-disable-next-line react/prop-types
 const Marathon = ({ setShow }) => {
   return (
     <div className="bg-[#faebd9] flex flex-col items-center mt-[7%] mx-[20%] max-md:mx-[8%] rounded-xl shadow-xl h-[70vh]">

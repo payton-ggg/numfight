@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 const GameOne = ({ setShow }) => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
