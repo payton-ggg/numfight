@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
-const GameOne = () => {
+const GameOne = ({ setShow }) => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [operation, setOperation] = useState("+");
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
-
+  let leftProblem = 5;
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -35,6 +35,13 @@ const GameOne = () => {
 
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
+    }
+
+    leftProblem -= 1;
+
+    if (leftProblem === 0) {
+      alert(`Ваш результат: ${score}`);
+      setShow(false);
     }
 
     // Генерация нового примера после проверки

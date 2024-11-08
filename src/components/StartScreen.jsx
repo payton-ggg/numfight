@@ -23,8 +23,4 @@ const StartScreen = ({ setShow }) => {
   );
 };
 
-StartScreen.propTypes = {
-  setShow: PropTypes.boolean,
-};
-
 export default StartScreen;

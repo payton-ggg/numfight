@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import GameOne from "./GameOne";
 
 const Marathon = ({ setShow }) => {
@@ -14,19 +13,15 @@ const Marathon = ({ setShow }) => {
       <div className="">
         <div
           className="text-6xl text-center text-slate-700 hover:cursor-pointer"
-          onClick={() => setShow(true)}
+          onClick={() => setShow(1)}
         >
           NUMFIGHT
         </div>
 
-        <GameOne />
+        <GameOne setShow={setShow} />
       </div>
     </div>
   );
-};
-
-Marathon.propTypes = {
-  setShow: PropTypes.boolean,
 };
 
 export default Marathon;
