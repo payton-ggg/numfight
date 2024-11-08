@@ -1,14 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
-// eslint-disable-next-line react/prop-types
-const GameOne = ({ setShow }) => {
+const FreeModeEnd = () => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [operation, setOperation] = useState("+");
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
-  const [attempts, setAttempts] = useState(0);
 
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -38,14 +35,7 @@ const GameOne = ({ setShow }) => {
       setScore(score + 1);
     }
 
-    setAttempts(attempts + 1);
-    if (attempts === 20) {
-      alert(`After 20 problem your score is ${score}`);
-      setShow(1);
-    }
-
     // Генерация нового примера после проверки
-    console.log(attempts);
     generateExample();
   };
 
@@ -57,12 +47,13 @@ const GameOne = ({ setShow }) => {
 
   useEffect(() => {
     generateExample();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="flex flex-col items-center max-md:flex-col">
+      <div className="flex flex-row items-center max-md:flex-col gap-14 max-md:gap-0">
         <div className="text-center text-5xl">Score: {score}</div>
-        <div className="text-center text-5xl">Attempts: {attempts}</div>
         <div className="text-center text-8xl">
           {num1} {operation} {num2}
         </div>
@@ -87,4 +78,4 @@ const GameOne = ({ setShow }) => {
   );
 };
 
-export default GameOne;
+export default FreeModeEnd;

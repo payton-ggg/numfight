@@ -1,5 +1,7 @@
+import FreeModeEnd from "./FreeModeEnd";
+
 // eslint-disable-next-line react/prop-types
-const StartScreen = ({ setShow }) => {
+const FreeMode = ({ setShow }) => {
   return (
     <div className="bg-[#faebd9] flex flex-col items-center mt-[7%] mx-[20%] max-md:mx-[8%] rounded-xl shadow-xl h-[70vh]">
       <div className="flex flex-row w-full justify-between">
@@ -9,23 +11,18 @@ const StartScreen = ({ setShow }) => {
           <div className="h-4 w-4 border-fancy-3 bg-[#807b82] border-2 border-black" />
         </div>
       </div>
-      <div>
-        <div className="text-6xl text-center text-slate-700">NUMFIGHT</div>
+      <div className="">
         <div
-          className="mt-6 hover:cursor-pointer text-center"
-          onClick={() => setShow(2)}
+          className="text-6xl text-center text-slate-700 hover:cursor-pointer"
+          onClick={() => setShow(1)}
         >
-          Marathon. As quickly as possible answear for 20 math`s exercise
+          NUMFIGHT
         </div>
-        <div
-          className="mt-1 hover:cursor-pointer text-center"
-          onClick={() => setShow(3)}
-        >
-          Free mode. You have no time and no restrictions only score
-        </div>
+
+        <FreeModeEnd />
       </div>
     </div>
   );
 };
 
-export default StartScreen;
+export default FreeMode;

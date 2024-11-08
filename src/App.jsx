@@ -1,6 +1,7 @@
 import { useState } from "react";
 import StartScreen from "./components/StartScreen";
-import Marathon from "./components/Marathon/MarathonStart";
+import Marathon from "./components/Marathon/Marathon";
+import FreeMode from "./components/FreeMode/FreeMode";
 
 const App = () => {
   const [show, setShow] = useState(1);
@@ -8,7 +9,7 @@ const App = () => {
     case 2:
       return <Marathon setShow={setShow} />;
     case 3:
-      return <Marathon setShow={setShow} />;
+      return <FreeMode setShow={setShow} />;
     default:
       return <StartScreen setShow={setShow} />;
   }
