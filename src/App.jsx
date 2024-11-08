@@ -10,6 +10,8 @@ const App = () => {
       return <Marathon setShow={setShow} />;
     case 3:
       return <FreeMode setShow={setShow} />;
+    case 4:
+      return <FreeMode setShow={setShow} />;
     default:
       return <StartScreen setShow={setShow} />;
   }

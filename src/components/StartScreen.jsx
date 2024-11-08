@@ -23,6 +23,13 @@ const StartScreen = ({ setShow }) => {
         >
           Free mode. You have no time and no restrictions only score
         </div>
+        <div
+          className="mt-1 hover:cursor-pointer text-center"
+          onClick={() => setShow(4)}
+        >
+          Without mistake. You have no time, but only 1 attemp to solve the
+          problem
+        </div>
       </div>
     </div>
   );
