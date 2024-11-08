@@ -7,7 +7,8 @@ const GameOne = ({ setShow }) => {
   const [operation, setOperation] = useState("+");
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
-  let leftProblem = 5;
+  const [attempts, setAttempts] = useState(0);
+
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -32,19 +33,17 @@ const GameOne = ({ setShow }) => {
   const checkAnswer = () => {
     let correctAnswer = eval(`${num1} ${operation} ${num2}`);
     console.log(correctAnswer);
-
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
     }
 
-    leftProblem -= 1;
-
-    if (leftProblem === 0) {
-      alert(`Ваш результат: ${score}`);
+    setAttempts(attempts + 1);
+    console.log(attempts);
+    if (attempts === 20) {
+      alert(`After 20 problem your score is ${score}`);
       setShow(true);
     }
 
-    console.log(leftProblem);
     // Генерация нового примера после проверки
     generateExample();
   };
