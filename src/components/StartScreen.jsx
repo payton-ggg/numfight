@@ -13,9 +13,15 @@ const StartScreen = ({ setShow }) => {
         <div className="text-6xl text-center text-slate-700">NUMFIGHT</div>
         <div
           className="mt-4 hover:cursor-pointer max-md:text-center"
-          onClick={() => setShow(false)}
+          onClick={() => setShow(2)}
         >
           Marathon. As quickly as possible answear for 20 math`s exercise
+        </div>
+        <div
+          className="mt-4 hover:cursor-pointer max-md:text-center"
+          onClick={() => setShow(3)}
+        >
+          Free mode. You have no time and no restrictions only score
         </div>
       </div>
     </div>

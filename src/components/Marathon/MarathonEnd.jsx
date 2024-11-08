@@ -42,7 +42,7 @@ const GameOne = ({ setShow }) => {
     console.log(attempts);
     if (attempts === 20) {
       alert(`After 20 problem your score is ${score}`);
-      setShow(true);
+      setShow(1);
     }
 
     // Генерация нового примера после проверки
