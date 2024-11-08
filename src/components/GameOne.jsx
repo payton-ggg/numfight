@@ -41,9 +41,10 @@ const GameOne = ({ setShow }) => {
 
     if (leftProblem === 0) {
       alert(`Ваш результат: ${score}`);
-      setShow(false);
+      setShow(true);
     }
 
+    console.log(leftProblem);
     // Генерация нового примера после проверки
     generateExample();
   };
