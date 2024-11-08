@@ -1,4 +1,4 @@
-import GameOne from "./GameOne";
+import GameOne from "./MarathonEnd";
 
 // eslint-disable-next-line react/prop-types
 const Marathon = ({ setShow }) => {
