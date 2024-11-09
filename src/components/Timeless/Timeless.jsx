@@ -73,6 +73,21 @@ const Timeless = ({ setShow }) => {
     return () => clearInterval(timer);
   }, [score, setShow, timeLeft]);
 
+  useEffect(() => {
+    const handleBackButton = (event) => {
+      event.preventDefault();
+      alert('Вы нажали кнопку "Назад"!');
+    };
+
+    window.addEventListener("popstate", handleBackButton);
+
+    setShow(1);
+
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, [setShow]);
+
   return (
     <Layout setShow={setShow}>
       <div className="flex justify-center items-center flex-col">
