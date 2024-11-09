@@ -10,6 +10,7 @@ const Marathon = ({ setShow }) => {
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(0);
+  const [time, setTime] = useState(0);
 
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -41,7 +42,9 @@ const Marathon = ({ setShow }) => {
 
     setAttempts(attempts + 1);
     if (attempts === 20) {
-      alert(`After 20 problem your score is ${score}`);
+      alert(
+        `After 20 problem your score is ${score}. And your time is ${time} seconds`
+      );
       setShow(1);
     }
 
@@ -61,6 +64,16 @@ const Marathon = ({ setShow }) => {
   }, []);
 
   useEffect(() => {
+    const timer = setInterval(() => {
+      setTime((timeIn) => {
+        return timeIn + 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [time]);
+
+  useEffect(() => {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
       event.returnValue = ""; // Это необходимо для работы в некоторых браузерах
@@ -77,8 +90,9 @@ const Marathon = ({ setShow }) => {
     <Layout setShow={setShow}>
       <div className="flex justify-center items-center flex-col">
         <div className="flex flex-col items-center max-md:flex-col">
-          <div className="text-center text-5xl">Score: {score}</div>
-          <div className="text-center text-5xl">Attempts: {attempts}</div>
+          <div className="text-center text-4xl">Score: {score}</div>
+          <div className="text-center text-4xl">Attempts: {attempts}</div>
+          <div className="text-center text-4xl">Time: {time}</div>
           <div className="text-center text-8xl">
             {num1} {operation} {num2}
           </div>
