@@ -74,19 +74,17 @@ const Timeless = ({ setShow }) => {
   }, [score, setShow, timeLeft]);
 
   useEffect(() => {
-    const handleBackButton = (event) => {
+    const handleBeforeUnload = (event) => {
       event.preventDefault();
-      alert('Вы нажали кнопку "Назад"!');
+      event.returnValue = ""; // Это необходимо для работы в некоторых браузерах
     };
 
-    window.addEventListener("popstate", handleBackButton);
-
-    setShow(1);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      window.removeEventListener("popstate", handleBackButton);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [setShow]);
+  }, []);
 
   return (
     <Layout setShow={setShow}>
