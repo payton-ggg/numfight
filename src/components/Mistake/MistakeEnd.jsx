@@ -51,10 +51,26 @@ const MistakeEnd = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((time) => {
+        if (time > 0) {
+          return time - 1;
+        } else {
+          clearInterval(time);
+          return 0;
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="flex flex-row items-center max-md:flex-col gap-14 max-md:gap-0">
+      <div className="flex flex-col items-center max-md:flex-col gap-14 max-md:gap-0">
         <div className="text-center text-5xl">Score: {score}</div>
+        <div className="text-center text-5xl">Time left: {timeLeft}</div>
         <div className="text-center text-8xl">
           {num1} {operation} {num2}
         </div>
