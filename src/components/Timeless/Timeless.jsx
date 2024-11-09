@@ -8,7 +8,7 @@ const Timeless = ({ setShow }) => {
   const [operation, setOperation] = useState("+");
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(10);
 
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -56,20 +56,22 @@ const Timeless = ({ setShow }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((time) => {
-        if (time > 0) {
-          return time - 1;
-        } else {
+        if (time === 0) {
           clearInterval(time);
-          alert(`The game is over. Your score is ${score}`);
-          setShow(1);
           return 0;
+        } else {
+          return time - 1;
         }
       });
     }, 1000);
 
+    if (timeLeft === 0) {
+      alert(`Time is over. Your score is ${score}`);
+      setShow(1);
+    }
+
     return () => clearInterval(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [score, setShow, timeLeft]);
 
   return (
     <Layout setShow={setShow}>
