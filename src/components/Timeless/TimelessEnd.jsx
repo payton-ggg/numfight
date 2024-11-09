@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const MistakeEnd = () => {
+const TimelessEnd = () => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [operation, setOperation] = useState("+");
@@ -58,6 +58,7 @@ const MistakeEnd = () => {
           return time - 1;
         } else {
           clearInterval(time);
+
           return 0;
         }
       });
@@ -68,7 +69,7 @@ const MistakeEnd = () => {
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="flex flex-col items-center max-md:flex-col gap-14 max-md:gap-0">
+      <div className="flex flex-col items-center max-md:flex-col gap-1 max-md:gap-0">
         <div className="text-center text-5xl">Score: {score}</div>
         <div className="text-center text-5xl">Time left: {timeLeft}</div>
         <div className="text-center text-8xl">
@@ -95,4 +96,4 @@ const MistakeEnd = () => {
   );
 };
 
-export default MistakeEnd;
+export default TimelessEnd;

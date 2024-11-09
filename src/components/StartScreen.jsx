@@ -27,8 +27,7 @@ const StartScreen = ({ setShow }) => {
           className="mt-1 hover:cursor-pointer text-center"
           onClick={() => setShow(4)}
         >
-          Without mistake. You have no time, but only 1 attemp to solve the
-          problem
+          Non-timeless. You have 60 second, to solve as much problem as you can
         </div>
       </div>
     </div>

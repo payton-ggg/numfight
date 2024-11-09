@@ -1,7 +1,7 @@
-import MistakeEnd from "./MistakeEnd";
+import TimelessEnd from "./TimelessEnd";
 
 // eslint-disable-next-line react/prop-types
-const Mistake = ({ setShow }) => {
+const Timeless = ({ setShow }) => {
   return (
     <div className="bg-[#faebd9] flex flex-col items-center mt-[7%] mx-[20%] max-md:mx-[8%] rounded-xl shadow-xl h-[70vh]">
       <div className="flex flex-row w-full justify-between">
@@ -19,10 +19,10 @@ const Mistake = ({ setShow }) => {
           NUMFIGHT
         </div>
 
-        <MistakeEnd />
+        <TimelessEnd />
       </div>
     </div>
   );
 };
 
-export default Mistake;
+export default Timeless;
