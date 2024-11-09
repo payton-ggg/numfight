@@ -1,0 +1,21 @@
+{
+  "name": "Improve your brain",
+  "short_name": "Numfight",
+  "description": "Mathematical game to test your skills!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5dc",
+  "theme_color": "#f5f5dc",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
