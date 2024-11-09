@@ -60,6 +60,19 @@ const Marathon = ({ setShow }) => {
     generateExample();
   }, []);
 
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ""; // Это необходимо для работы в некоторых браузерах
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <Layout setShow={setShow}>
       <div className="flex justify-center items-center flex-col">
