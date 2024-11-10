@@ -4,6 +4,7 @@ import Marathon from "./components/Marathon/Marathon";
 import FreeMode from "./components/FreeMode/FreeMode";
 import Timeless from "./components/Timeless/Timeless";
 import ExtraTime from "./components/ExtraTime/ExtraTime";
+import Multiplication from "./components/Multiplication/Multiplication";
 
 const App = () => {
   useEffect(() => {
@@ -30,6 +31,8 @@ const App = () => {
       return <Timeless setShow={setShow} />;
     case 5:
       return <ExtraTime setShow={setShow} />;
+    case 6:
+      return <Multiplication setShow={setShow} />;
     default:
       return <StartScreen setShow={setShow} />;
   }

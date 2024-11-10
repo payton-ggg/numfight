@@ -37,6 +37,12 @@ const StartScreen = ({ setShow }) => {
           Survival mode. From the beginning you have 10 second, after solving a
           problem you will get extra 2 seconds.
         </div>
+        <div
+          className="mt-1 hover:cursor-pointer text-center"
+          onClick={() => setShow(6)}
+        >
+          Multiplication. You have only number to multiply.
+        </div>
       </div>
     </div>
   );
