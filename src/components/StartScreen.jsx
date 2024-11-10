@@ -30,6 +30,13 @@ const StartScreen = ({ setShow }) => {
           Time is of the essence. You have 60 seconds to solve as many problems
           as possible
         </div>
+        <div
+          className="mt-1 hover:cursor-pointer text-center"
+          onClick={() => setShow(5)}
+        >
+          Survival mode. From the beginning you have 10 second, after solving a
+          problem you will get extra 2 seconds.
+        </div>
       </div>
     </div>
   );
