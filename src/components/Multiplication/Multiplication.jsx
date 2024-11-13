@@ -16,8 +16,8 @@ const Multiplication = ({ setShow }) => {
 
   const generateExample = () => {
     const operation = "*";
-    const num1 = generateRandomNumber(1, 15);
-    const num2 = generateRandomNumber(1, num1 >= 10 ? 10 : 15);
+    const num1 = generateRandomNumber(2, 20);
+    const num2 = generateRandomNumber(1, 30);
 
     setNum1(num1);
     setNum2(num2);

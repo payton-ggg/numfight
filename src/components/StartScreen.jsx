@@ -43,6 +43,12 @@ const StartScreen = ({ setShow }) => {
         >
           Multiplication. You have only number to multiply.
         </div>
+        <div
+          className="mt-1 hover:cursor-pointer text-center"
+          onClick={() => setShow(7)}
+        >
+          Last. The hardest.
+        </div>
       </div>
     </div>
   );

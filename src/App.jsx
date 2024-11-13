@@ -5,6 +5,7 @@ import FreeMode from "./components/FreeMode/FreeMode";
 import Timeless from "./components/Timeless/Timeless";
 import ExtraTime from "./components/ExtraTime/ExtraTime";
 import Multiplication from "./components/Multiplication/Multiplication";
+import Fold from "./components/Fold/Fold";
 
 const App = () => {
   useEffect(() => {
@@ -33,6 +34,8 @@ const App = () => {
       return <ExtraTime setShow={setShow} />;
     case 6:
       return <Multiplication setShow={setShow} />;
+    case 7:
+      return <Fold setShow={setShow} />;
     default:
       return <StartScreen setShow={setShow} />;
   }
