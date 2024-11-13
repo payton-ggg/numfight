@@ -73,9 +73,7 @@ const Fold = ({ setShow }) => {
       <div className="flex justify-center items-center flex-col">
         {!isGameOver ? (
           <div className="flex flex-col items-center max-md:flex-col">
-            <div className="text-center text-4xl">
-              Step left: {10 - step + 1}
-            </div>
+            <div className="text-center text-4xl">Step left: {10 - step}</div>
             <div className="text-center text-8xl">
               {operation} {newNumber}
             </div>
