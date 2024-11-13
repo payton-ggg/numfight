@@ -12,19 +12,16 @@ const Fold = ({ setShow }) => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [timer, setTimer] = useState(null);
 
-  // Функция для генерации случайного числа и операции
   const generateExample = () => {
     const randomNum = Math.floor(Math.random() * 10) + 1;
     const randomOp = Math.random() < 0.5 ? "+" : "-";
     return { randomNum, randomOp };
   };
 
-  // Функция для выполнения вычислений
   const calculateResult = (num, op) => {
     return op === "+" ? currentNumber + num : currentNumber - num;
   };
 
-  // Обновление выражения каждые 3 секунды
   useEffect(() => {
     if (step >= 10) {
       clearInterval(timer);
@@ -46,7 +43,6 @@ const Fold = ({ setShow }) => {
     return () => clearInterval(interval);
   }, [step]);
 
-  // Функция для обработки ввода пользователя
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
