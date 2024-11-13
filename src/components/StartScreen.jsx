@@ -47,7 +47,8 @@ const StartScreen = ({ setShow }) => {
           className="mt-1 hover:cursor-pointer text-center"
           onClick={() => setShow(7)}
         >
-          Last. The hardest.
+          Math Blitz. Every 3 seconds, new expressions appear. After 10 rounds,
+          input the correct answer to win!
         </div>
       </div>
     </div>
