@@ -10,7 +10,7 @@ const StartScreen = ({ setShow }) => {
         </div>
       </div>
       <div>
-        <div className="text-6xl text-center text-slate-700">NUMFIGHT</div>
+        <div className="text-6xl text-center text-slate-700">MathQuest</div>
         <div
           className="mt-6 hover:cursor-pointer text-center"
           onClick={() => setShow(2)}

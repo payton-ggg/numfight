@@ -14,7 +14,7 @@ const Layout = ({ children, setShow }) => {
           className="text-6xl text-center text-slate-700 hover:cursor-pointer"
           onClick={() => setShow(1)}
         >
-          NUMFIGHT
+          MathQuest
         </div>
         {children}
       </div>
