@@ -15,40 +15,43 @@ const StartScreen = ({ setShow }) => {
           className="mt-6 hover:cursor-pointer text-center"
           onClick={() => setShow(2)}
         >
-          Marathon. As quickly as possible answear for 20 math`s exercise
+          Marathon 🏃. Answer 20 math exercises as quickly as possible. Test
+          your speed and accuracy!
         </div>
         <div
           className="mt-1 hover:cursor-pointer text-center"
           onClick={() => setShow(3)}
         >
-          Free mode. You have no time and no restrictions only score
+          Free mode 🔓. No time limits, no restrictions — just focus on solving
+          problems and accumulating a high score
         </div>
         <div
           className="mt-1 hover:cursor-pointer text-center"
           onClick={() => setShow(4)}
         >
-          Time is of the essence. You have 60 seconds to solve as many problems
-          as possible
+          Time is of the essence ⏰. You have 60 seconds to solve as many
+          problems as possible. The clock is ticking!
         </div>
         <div
           className="mt-1 hover:cursor-pointer text-center"
           onClick={() => setShow(5)}
         >
-          Survival mode. From the beginning you have 10 second, after solving a
-          problem you will get extra 2 seconds.
+          Survival mode 🛡️. Start with 10 seconds on the clock. For every
+          correct answer, earn an extra 2 seconds. How long can you last?
         </div>
         <div
           className="mt-1 hover:cursor-pointer text-center"
           onClick={() => setShow(6)}
         >
-          Multiplication. You have only number to multiply.
+          Multiplication ✖️. Only multiplication problems. Perfect for
+          practicing your times tables!
         </div>
         <div
           className="mt-1 hover:cursor-pointer text-center"
           onClick={() => setShow(7)}
         >
-          Math Blitz. Every 5 seconds, new expressions appear. After 10 rounds,
-          input the correct answer to win!
+          Math Blitz ⚡. Every 5 seconds, a new expression appears. After 10
+          rounds, input the final answer to win!
         </div>
       </div>
     </div>
