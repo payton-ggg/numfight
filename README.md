@@ -1,53 +1,144 @@
-# Math Blitz 🎮🧮
+### `README.md`
 
-Welcome to **Math Blitz** — a fast-paced arithmetic game where you test your quick math skills! The game challenges your ability to calculate under pressure by displaying new mathematical expressions every 3 seconds. Are you ready to take on the challenge? 🚀
+# 🧮 Math Master Game Suite 🎮
 
-## 🎯 How to Play
-1. The game starts with the number `0`.
-2. Every 3 seconds, a new expression appears (e.g., `+7` or `-3`).
-3. The current value is updated automatically based on the expression shown.
-4. After **10 expressions**, you need to enter the correct final result. 🖩
-5. If your answer is correct, you win! 🎉 If not, better luck next time! 😅
+Welcome to **Math Master**, a collection of fast-paced math games designed to challenge and sharpen your arithmetic skills! This project combines a dynamic **frontend** built with React and a robust **backend** using Express and MongoDB for storing player scores.
 
-## 📦 Tech Stack
-- **React** ⚛️
-- **Vite** ⚡
-- **Framer Motion** for animations 🎨
+## 📋 Game Modes
+
+Choose from a variety of exciting math challenges:
+
+1. **Marathon** 🏃
+
+   - Answer 20 math exercises as quickly as possible. Test your speed and accuracy!
+
+2. **Free Mode** 🔓
+
+   - No time limits, no restrictions — just focus on solving problems and accumulating a high score.
+
+3. **Time is of the Essence** ⏰
+
+   - You have **60 seconds** to solve as many problems as possible. The clock is ticking!
+
+4. **Survival Mode** 🛡️
+
+   - Start with **10 seconds** on the clock. For every correct answer, earn an extra **2 seconds**. How long can you last?
+
+5. **Multiplication Challenge** ✖️
+
+   - Only multiplication problems. Perfect for practicing your times tables!
+
+6. **Math Blitz** ⚡
+   - Every **5 seconds**, a new expression appears. After **10 rounds**, input the final answer to win!
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Vite, Tailwind CSS, Framer Motion (for smooth animations)
+- **Backend**: Express, MongoDB (using Mongoose)
+- **Deployment**: Vercel (Frontend) & Render (Backend)
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-Ensure you have **Node.js** and **npm** installed on your system.
+
+Make sure you have the following installed:
+
+- Node.js
+- MongoDB
 
 ### Installation
-1. Clone this repository:
+
+1. **Clone the repository**:
+
    ```bash
-   git clone https://github.com/yourusername/math-blitz.git
-   cd math-blitz
+   git clone https://github.com/yourusername/math-master.git
+   cd math-master
    ```
-2. Install dependencies:
+
+2. **Install frontend dependencies**:
+
    ```bash
+   cd frontend
    npm install
    ```
-3. Start the development server:
+
+3. **Install backend dependencies**:
    ```bash
+   cd ../backend
+   npm install
+   ```
+
+### Setting Up Environment Variables
+
+Create a `.env` file in the `/backend` directory and configure the following:
+
+```
+MONGODB_URI=mongodb://localhost:27017/leaderboard
+PORT=5000
+```
+
+### Running the Project
+
+1. **Start the backend server**:
+
+   ```bash
+   cd backend
    npm run dev
    ```
-4. Open the game in your browser:
+
+2. **Start the frontend development server**:
+
+   ```bash
+   cd ../frontend
+   npm run dev
+   ```
+
+3. Open your browser and navigate to:
    ```
    http://localhost:5173
    ```
 
-## 🛠️ Features
-- **Dynamic Expressions**: New math expressions appear every 3 seconds.
-- **Zoom-in Animation**: Expressions pop up with a smooth zoom effect. 🔍
-- **10-round Challenge**: Calculate correctly within 10 expressions or face the challenge of remembering the sequence!
+## 🎮 Gameplay Instructions
+
+### Math Blitz Example
+
+- The game starts with the number `0`.
+- Every **5 seconds**, a new expression appears (e.g., `+7`, `-3`).
+- After **10 expressions**, input the final result in the answer box to win!
+
+### Leaderboard System 🏆
+
+The game includes a leaderboard that stores the top scores for each game mode:
+
+- **Data is stored in MongoDB**.
+- **Top 10 players** are displayed on the leaderboard.
+- Players can save their scores with a username after finishing a game.
+
+### API Endpoints
+
+- **GET /api/leaderboard**: Fetch the top 10 scores.
+- **POST /api/leaderboard**: Save a new score.
+
+## ✨ Features
+
+- Smooth animations using Framer Motion for a polished gaming experience.
+- Multiple game modes to suit different skill levels.
+- Responsive design for mobile and desktop users.
 
 ## 🤔 Future Enhancements
-- Adding a **leaderboard** to track high scores 🏆.
-- Introducing different difficulty levels 🌟.
-- Support for additional operators like multiplication and division ✖️➗.
 
-## 💡 Contribution
-Feel free to fork this project, open issues, or submit pull requests. Let's make Math Blitz even better together! 🤝
+- Online multiplayer mode 🌐.
+- Power-ups and bonuses to spice up the gameplay 💥.
+- Detailed analytics to track player progress 📊.
 
+## 🛠️ Contributing
+
+Feel free to fork this project, open issues, and submit pull requests. Contributions are always welcome!
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+Happy gaming! 🎲
