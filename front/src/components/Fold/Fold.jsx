@@ -38,7 +38,7 @@ const Fold = ({ setShow }) => {
       setCurrentNumber(newResult);
       setStep((prevStep) => prevStep + 1);
       console.log(newResult);
-    }, 3000);
+    }, 5000);
     setTimer(interval);
 
     return () => clearInterval(interval);

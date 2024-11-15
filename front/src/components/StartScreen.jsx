@@ -47,7 +47,7 @@ const StartScreen = ({ setShow }) => {
           className="mt-1 hover:cursor-pointer text-center"
           onClick={() => setShow(7)}
         >
-          Math Blitz. Every 3 seconds, new expressions appear. After 10 rounds,
+          Math Blitz. Every 5 seconds, new expressions appear. After 10 rounds,
           input the correct answer to win!
         </div>
       </div>
