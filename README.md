@@ -1,5 +1,3 @@
-### `README.md`
-
 # 🧮 Math Master Game Suite 🎮
 
 Welcome to **Math Master**, a collection of fast-paced math games designed to challenge and sharpen your arithmetic skills! This project combines a dynamic **frontend** built with React and a robust **backend** using Express and MongoDB for storing player scores.
@@ -138,7 +136,3 @@ Feel free to fork this project, open issues, and submit pull requests. Contribut
 ## 📄 License
 
 This project is licensed under the MIT License.
-
----
-
-Happy gaming! 🎲
