@@ -55,5 +55,3 @@ Feel free to fork this project, open issues, or submit pull requests. Let's make
 This project is licensed under the MIT License. 📜
 
 ---
-
-Happy calculating! 🎲
