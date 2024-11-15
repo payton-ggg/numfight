@@ -132,7 +132,3 @@ The game includes a leaderboard that stores the top scores for each game mode:
 ## 🛠️ Contributing
 
 Feel free to fork this project, open issues, and submit pull requests. Contributions are always welcome!
-
-## 📄 License
-
-This project is licensed under the MIT License.
