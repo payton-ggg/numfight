@@ -51,5 +51,3 @@ Ensure you have **Node.js** and **npm** installed on your system.
 ## 💡 Contribution
 Feel free to fork this project, open issues, or submit pull requests. Let's make Math Blitz even better together! 🤝
 
-## 📄 License
-This project is licensed under the MIT License. 📜
