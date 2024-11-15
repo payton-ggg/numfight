@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Layout from "../../Layout";
+import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
 const Fold = ({ setShow }) => {
@@ -13,7 +14,7 @@ const Fold = ({ setShow }) => {
   const [timer, setTimer] = useState(null);
 
   const generateExample = () => {
-    const randomNum = Math.floor(Math.random() * 10) + 1;
+    const randomNum = Math.floor(Math.random() * 100) + 1;
     const randomOp = Math.random() < 0.5 ? "+" : "-";
     return { randomNum, randomOp };
   };
@@ -70,9 +71,16 @@ const Fold = ({ setShow }) => {
         {!isGameOver ? (
           <div className="flex flex-col items-center max-md:flex-col">
             <div className="text-center text-4xl">Step left: {10 - step}</div>
-            <div className="text-center text-8xl">
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.2 }}
+              className="text-center text-8xl"
+            >
               {operation} {newNumber}
-            </div>
+            </motion.div>
           </div>
         ) : (
           <>
