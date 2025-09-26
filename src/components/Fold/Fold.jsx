@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../../Layout";
 import { motion } from "framer-motion";
+import NumericKeyboard from "../Keyboard/NumericKeyboard";
 
 // eslint-disable-next-line react/prop-types
 const Fold = ({ setShow }) => {
@@ -100,6 +101,12 @@ const Fold = ({ setShow }) => {
                 onKeyDown={handleKeyDown}
               />
             </div>
+            <NumericKeyboard
+              value={inputValue}
+              onChange={setInputValue}
+              onEnter={checkAnswer}
+              allowNegative={true}
+            />
             <button
               className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
               onClick={checkAnswer}

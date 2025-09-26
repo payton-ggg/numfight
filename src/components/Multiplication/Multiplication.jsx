@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "../../Layout";
+import NumericKeyboard from "../Keyboard/NumericKeyboard";
 
 // eslint-disable-next-line react/prop-types
 const Multiplication = ({ setShow }) => {
@@ -76,6 +77,12 @@ const Multiplication = ({ setShow }) => {
             onKeyDown={handleKeyDown}
           />
         </div>
+        <NumericKeyboard
+          value={userAnswer}
+          onChange={setUserAnswer}
+          onEnter={checkAnswer}
+          allowNegative={false}
+        />
         <button
           className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
           onClick={checkAnswer}
