@@ -49,7 +49,7 @@ Make sure you have the following installed:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/math-master.git
+   git clone https://github.com/payton-ggg/numfight.git
    cd math-master
    ```
 
