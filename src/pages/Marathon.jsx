@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Layout from "../layouts/Layout";
 import NumericKeyboard from "../components/Keyboard/NumericKeyboard";
@@ -37,7 +36,7 @@ const Marathon = () => {
 
   const checkAnswer = () => {
     const correctAnswer = eval(`${num1} ${operation} ${num2}`);
-  
+
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
       const nextSolved = solved + 1;
@@ -49,7 +48,7 @@ const Marathon = () => {
     } else {
       setAttempts(attempts + 1);
     }
-  
+
     generateExample();
   };
 

@@ -36,12 +36,10 @@ const Quadratic = () => {
 
   useEffect(() => {
     generateEquation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     generateEquation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [aMode]);
 
   const equationStr = useMemo(() => {

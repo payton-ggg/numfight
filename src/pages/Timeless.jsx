@@ -35,7 +35,6 @@ const Timeless = () => {
 
   useEffect(() => {
     generateExample();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -43,7 +42,7 @@ const Timeless = () => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
-  
+
     return () => clearInterval(timer);
   }, [timeLeft]);
 

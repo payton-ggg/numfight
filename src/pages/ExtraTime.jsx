@@ -11,12 +11,20 @@ const ExtraTime = () => {
   const [mistakes, setMistakes] = useState(0);
   const [timeLeft, setTimeLeft] = useState(10);
 
-  const generateExample = () => {
+  const generateRandomOperation = () => {
     const operations = ["+", "-", "*"];
-    const operation = operations[Math.floor(Math.random() * operations.length)];
+    const randomIndex = Math.floor(Math.random() * operations.length);
+    return operations[randomIndex];
+  };
 
-    const num1 = Math.floor(Math.random() * 100) + 1;
-    const num2 = Math.floor(Math.random() * 100) + 1;
+  const generateRandomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const generateExample = () => {
+    const operation = generateRandomOperation();
+    const num1 = generateRandomNumber(1, operation === "*" ? 10 : 100);
+    const num2 = generateRandomNumber(1, operation === "*" ? 10 : 100);
 
     setNum1(num1);
     setNum2(num2);
@@ -25,7 +33,8 @@ const ExtraTime = () => {
   };
 
   const checkAnswer = () => {
-    const correctAnswer = eval(`${num1} ${operation} ${num2}`);
+    if (timeLeft <= 0) return;
+    const correctAnswer = num1 * num2;
 
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
@@ -46,7 +55,7 @@ const ExtraTime = () => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
-  
+
     return () => clearInterval(timer);
   }, [timeLeft]);
 

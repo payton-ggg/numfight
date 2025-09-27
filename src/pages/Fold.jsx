@@ -58,9 +58,10 @@ const Fold = () => {
   }, [time]);
 
   useEffect(() => {
-    // Start Math Blitz: immediate expression counts as round 1, then 9 more rounds every 5s
-    generateExample();
-    setRound(1);
+    // Автоматически выполняем 10 операций: каждые 5 секунд
+    set_operations_log([]);
+    setNumber(0);
+    setRound(0);
     const id = setInterval(() => {
       setRound((prev) => {
         if (prev >= 10) {
@@ -72,6 +73,9 @@ const Fold = () => {
         return prev + 1;
       });
     }, 5000);
+    // первая операция сразу
+    generateExample();
+    setRound(1);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
