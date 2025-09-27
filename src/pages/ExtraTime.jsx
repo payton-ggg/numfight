@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
-import Layout from "../../Layout";
-import NumericKeyboard from "../Keyboard/NumericKeyboard";
+import Layout from "../layouts/Layout";
+import NumericKeyboard from "../components/Keyboard/NumericKeyboard";
 
-const Multiplication = ({ setShow }) => {
+const ExtraTime = () => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [operation, setOperation] = useState("+");
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(0);
-
-  const generateRandomNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  const [mistakes, setMistakes] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(60);
 
   const generateExample = () => {
-    const operation = "*";
-    const num1 = generateRandomNumber(2, 20);
-    const num2 = generateRandomNumber(1, 30);
+    const operations = ["+", "-", "*"];
+    const operation = operations[Math.floor(Math.random() * operations.length)];
+
+    const num1 = Math.floor(Math.random() * 100) + 1;
+    const num2 = Math.floor(Math.random() * 100) + 1;
 
     setNum1(num1);
     setNum2(num2);
@@ -26,14 +25,28 @@ const Multiplication = ({ setShow }) => {
   };
 
   const checkAnswer = () => {
-    let correctAnswer = eval(`${num1} ${operation} ${num2}`);
-    console.log(correctAnswer);
+    const correctAnswer = eval(`${num1} ${operation} ${num2}`);
+
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
+    } else {
+      setMistakes(mistakes + 1);
     }
 
     generateExample();
   };
+
+  useEffect(() => {
+    generateExample();
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -41,27 +54,13 @@ const Multiplication = ({ setShow }) => {
     }
   };
 
-  useEffect(() => {
-    generateExample();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((timeIn) => {
-        return timeIn + 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [time]);
-
   return (
-    <Layout setShow={setShow}>
+    <Layout>
       <div className="flex justify-center items-center flex-col">
-        <div className="flex flex-col items-center max-md:flex-col">
+        <div className="flex flex-col items-center max-md:flex-col gap-7">
           <div className="text-center text-4xl">Score: {score}</div>
-          <div className="text-center text-4xl">Time: {time}</div>
+          <div className="text-center text-4xl">Mistakes: {mistakes}</div>
+          <div className="text-center text-4xl">Time: {timeLeft}</div>
           <div className="text-center text-8xl">
             {num1} {operation} {num2}
           </div>
@@ -80,7 +79,7 @@ const Multiplication = ({ setShow }) => {
           value={userAnswer}
           onChange={setUserAnswer}
           onEnter={checkAnswer}
-          allowNegative={false}
+          allowNegative={true}
         />
         <button
           className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
@@ -93,4 +92,4 @@ const Multiplication = ({ setShow }) => {
   );
 };
 
-export default Multiplication;
+export default ExtraTime;

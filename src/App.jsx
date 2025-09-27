@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
-import StartScreen from "./components/StartScreen";
-import Marathon from "./components/Marathon/Marathon";
-import FreeMode from "./components/FreeMode/FreeMode";
-import Timeless from "./components/Timeless/Timeless";
-import ExtraTime from "./components/ExtraTime/ExtraTime";
-import Multiplication from "./components/Multiplication/Multiplication";
-import Fold from "./components/Fold/Fold";
-import Quadratic from "./components/Quadratic/Quadratic";
+import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import StartScreen from "./pages/StartScreen";
+import Marathon from "./pages/Marathon";
+import FreeMode from "./pages/FreeMode";
+import Timeless from "./pages/Timeless";
+import ExtraTime from "./pages/ExtraTime";
+import Multiplication from "./pages/Multiplication";
+import Fold from "./pages/Fold";
+import Quadratic from "./pages/Quadratic";
 
 const App = () => {
   useEffect(() => {
@@ -22,26 +23,19 @@ const App = () => {
     };
   }, []);
 
-  const [show, setShow] = useState(1);
-
-  switch (show) {
-    case 2:
-      return <Marathon setShow={setShow} />;
-    case 3:
-      return <FreeMode setShow={setShow} />;
-    case 4:
-      return <Timeless setShow={setShow} />;
-    case 5:
-      return <ExtraTime setShow={setShow} />;
-    case 6:
-      return <Multiplication setShow={setShow} />;
-    case 7:
-      return <Fold setShow={setShow} />;
-    case 8:
-      return <Quadratic setShow={setShow} />;
-    default:
-      return <StartScreen setShow={setShow} />;
-  }
+  return (
+    <Routes>
+      <Route path="/" element={<StartScreen />} />
+      <Route path="/marathon" element={<Marathon />} />
+      <Route path="/free" element={<FreeMode />} />
+      <Route path="/timeless" element={<Timeless />} />
+      <Route path="/extra-time" element={<ExtraTime />} />
+      <Route path="/multiplication" element={<Multiplication />} />
+      <Route path="/fold" element={<Fold />} />
+      <Route path="/quadratic" element={<Quadratic />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
 };
 
 export default App;

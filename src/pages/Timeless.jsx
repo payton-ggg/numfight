@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Layout from "../../Layout";
-import NumericKeyboard from "../Keyboard/NumericKeyboard";
+import Layout from "../layouts/Layout";
+import NumericKeyboard from "../components/Keyboard/NumericKeyboard";
 
-const Timeless = ({ setShow }) => {
+const Timeless = () => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [operation, setOperation] = useState("+");
@@ -10,20 +10,12 @@ const Timeless = ({ setShow }) => {
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(60);
 
-  const generateRandomNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
-  const generateRandomOperation = () => {
-    const operations = ["+", "-", "*"];
-    const randomIndex = Math.floor(Math.random() * operations.length);
-    return operations[randomIndex];
-  };
-
   const generateExample = () => {
-    const operation = generateRandomOperation();
-    const num1 = generateRandomNumber(1, operation === "*" ? 10 : 100);
-    const num2 = generateRandomNumber(1, operation === "*" ? 10 : 100);
+    const operations = ["+", "-", "*"];
+    const operation = operations[Math.floor(Math.random() * operations.length)];
+
+    const num1 = Math.floor(Math.random() * 100) + 1;
+    const num2 = Math.floor(Math.random() * 100) + 1;
 
     setNum1(num1);
     setNum2(num2);
@@ -33,19 +25,12 @@ const Timeless = ({ setShow }) => {
 
   const checkAnswer = () => {
     let correctAnswer = eval(`${num1} ${operation} ${num2}`);
-    console.log(correctAnswer);
+
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
     }
 
-    // Генерация нового примера после проверки
     generateExample();
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      checkAnswer();
-    }
   };
 
   useEffect(() => {
@@ -55,35 +40,29 @@ const Timeless = ({ setShow }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft((time) => {
-        if (time === 0) {
-          clearInterval(time);
-          return 0;
-        } else {
-          return time - 1;
-        }
-      });
+      setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
 
-    if (timeLeft === 0) {
-      alert(`Time is over. Your score is ${score}`);
-      setShow(1);
-    }
-
     return () => clearInterval(timer);
-  }, [score, setShow, timeLeft]);
+  }, [timeLeft]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      checkAnswer();
+    }
+  };
 
   return (
-    <Layout setShow={setShow}>
+    <Layout>
       <div className="flex justify-center items-center flex-col">
-        <div className="flex flex-col items-center max-md:flex-col gap-1 max-md:gap-0">
-          <div className="text-center text-5xl">Score: {score}</div>
-          <div className="text-center text-5xl">Time left: {timeLeft}</div>
+        <div className="flex flex-col items-center max-md:flex-col gap-14 max-md:gap-0">
+          <div className="text-center text-4xl">Score: {score}</div>
+          <div className="text-center text-4xl">Time: {timeLeft}</div>
           <div className="text-center text-8xl">
             {num1} {operation} {num2}
           </div>
         </div>
-        <div className="w-full max-w-sm min-w-[200px] mt-2">
+        <div className="w-full max-w-sm min-w-[200px]">
           <input
             className="w-full bg-transparent placeholder:text-green-400 text-green-700 text-sm border border-green-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-green-500 hover:border-green-600 shadow-sm focus:shadow"
             placeholder="Type here..."

@@ -1,4 +1,6 @@
-const Layout = ({ children, setShow }) => {
+import { Link } from "react-router-dom";
+
+const Layout = ({ children }) => {
   return (
     <div className="bg-[#faebd9] flex flex-col items-center mt-[5%] mx-[20%] max-md:mx-[8%] max-md:mt-[10%] rounded-xl shadow-xl h-[80vh]">
       <div className="flex flex-row w-full justify-between">
@@ -9,12 +11,12 @@ const Layout = ({ children, setShow }) => {
         </div>
       </div>
       <div className="">
-        <div
-          className="text-6xl text-center text-slate-700 hover:cursor-pointer"
-          onClick={() => setShow(1)}
+        <Link
+          className="text-6xl text-center text-slate-700 hover:cursor-pointer block"
+          to="/"
         >
           MathQuest
-        </div>
+        </Link>
         {children}
       </div>
     </div>
