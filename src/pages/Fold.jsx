@@ -9,6 +9,7 @@ const Fold = () => {
   const [attempts, setAttempts] = useState(0);
   const [time, setTime] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
+  const [round, setRound] = useState(0);
 
   const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -17,10 +18,10 @@ const Fold = () => {
   const generateExample = () => {
     const operation = Math.random() < 0.5 ? "+" : "-";
     const num = generateRandomNumber(1, 100);
-
+  
     setNumber((prev) => {
       const newNumber = operation === "+" ? prev + num : prev - num;
-      set_operations_log([...operations_log, `${operation} ${num}`]);
+      set_operations_log((prev) => [...prev, `${operation} ${num}`]);
       return newNumber;
     });
   };
@@ -56,22 +57,37 @@ const Fold = () => {
     return () => clearInterval(timer);
   }, [time]);
 
+  useEffect(() => {
+    // Start Math Blitz: immediate expression counts as round 1, then 9 more rounds every 5s
+    generateExample();
+    setRound(1);
+    const id = setInterval(() => {
+      setRound((prev) => {
+        if (prev >= 10) {
+          clearInterval(id);
+          setGameOver(true);
+          return prev;
+        }
+        generateExample();
+        return prev + 1;
+      });
+    }, 5000);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Layout>
       <div className="flex justify-center items-center flex-col">
         <div className="flex flex-col items-center max-md:flex-col gap-8 max-md:gap-0">
-          <div className="text-center text-4xl">Attempts: {attempts}</div>
-          <div className="text-center text-4xl">Time: {time}</div>
+          {!isGameOver && (
+            <div className="text-center text-4xl">Round: {Math.min(round, 10)} / 10</div>
+          )}
           <div className="text-center text-6xl">Your number:</div>
           <div className="text-center text-8xl">{number}</div>
         </div>
         {!isGameOver ? (
-          <button
-            className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
-            onClick={generateExample}
-          >
-            Next step
-          </button>
+          <div className="text-center text-2xl mt-6">A new expression appears every 5 seconds...</div>
         ) : (
           <div className="w-full max-w-sm min-w-[200px]">
             <input

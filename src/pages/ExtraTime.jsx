@@ -9,7 +9,7 @@ const ExtraTime = () => {
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
   const [mistakes, setMistakes] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(10);
 
   const generateExample = () => {
     const operations = ["+", "-", "*"];
@@ -29,6 +29,7 @@ const ExtraTime = () => {
 
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
+      setTimeLeft((prev) => prev + 2);
     } else {
       setMistakes(mistakes + 1);
     }
@@ -41,10 +42,11 @@ const ExtraTime = () => {
   }, []);
 
   useEffect(() => {
+    if (timeLeft <= 0) return;
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
-
+  
     return () => clearInterval(timer);
   }, [timeLeft]);
 

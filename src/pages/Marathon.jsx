@@ -11,6 +11,8 @@ const Marathon = () => {
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(0);
   const [time, setTime] = useState(0);
+  const [solved, setSolved] = useState(0);
+  const [finished, setFinished] = useState(false);
 
   const generateRandomOperation = () => {
     const operations = ["+", "-", "*"];
@@ -35,13 +37,19 @@ const Marathon = () => {
 
   const checkAnswer = () => {
     const correctAnswer = eval(`${num1} ${operation} ${num2}`);
-
+  
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
+      const nextSolved = solved + 1;
+      setSolved(nextSolved);
+      if (nextSolved >= 20) {
+        setFinished(true);
+        return;
+      }
     } else {
       setAttempts(attempts + 1);
     }
-
+  
     generateExample();
   };
 
@@ -56,48 +64,74 @@ const Marathon = () => {
   }, []);
 
   useEffect(() => {
+    if (finished) return;
     const timer = setInterval(() => {
-      setTime((timeIn) => {
-        return timeIn + 1;
-      });
+      setTime((timeIn) => timeIn + 1);
     }, 1000);
-
     return () => clearInterval(timer);
-  }, [time]);
+  }, [finished]);
 
   return (
     <Layout>
       <div className="flex justify-center items-center flex-col">
         <div className="flex flex-col items-center max-md:flex-col">
-          <div className="text-center text-4xl">Score: {score}</div>
+          <div className="text-center text-4xl">Solved: {solved} / 20</div>
           <div className="text-center text-4xl">Attempts: {attempts}</div>
           <div className="text-center text-4xl">Time: {time}</div>
           <div className="text-center text-8xl">
             {num1} {operation} {num2}
           </div>
         </div>
-        <div className="w-full max-w-sm min-w-[200px]">
-          <input
-            className="w-full bg-transparent placeholder:text-green-400 text-green-700 text-sm border border-green-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-green-500 hover:border-green-600 shadow-sm focus:shadow"
-            placeholder="Type here..."
-            type="number"
-            value={userAnswer}
-            onChange={(e) => setUserAnswer(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-        </div>
-        <NumericKeyboard
-          value={userAnswer}
-          onChange={setUserAnswer}
-          onEnter={checkAnswer}
-          allowNegative={true}
-        />
-        <button
-          className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
-          onClick={checkAnswer}
-        >
-          Enter
-        </button>
+        {!finished && (
+          <>
+            <div className="w-full max-w-sm min-w-[200px]">
+              <input
+                className="w-full bg-transparent placeholder:text-green-400 text-green-700 text-sm border border-green-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-green-500 hover:border-green-600 shadow-sm focus:shadow"
+                placeholder="Type here..."
+                type="number"
+                value={userAnswer}
+                onChange={(e) => setUserAnswer(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+            </div>
+            <NumericKeyboard
+              value={userAnswer}
+              onChange={setUserAnswer}
+              onEnter={checkAnswer}
+              allowNegative={true}
+            />
+            <button
+              className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
+              onClick={checkAnswer}
+            >
+              Enter
+            </button>
+          </>
+        )}
+        {finished && (
+          <div className="mt-6 text-center">
+            <div className="text-3xl">Finished!</div>
+            <div className="text-2xl mt-2">Time: {time}s</div>
+            <div className="text-2xl">Attempts: {attempts}</div>
+            <button
+              className="bg-emerald-400 hover:bg-emerald-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-4"
+              onClick={() => {
+                setNum1(0);
+                setNum2(0);
+                setOperation("+");
+                setUserAnswer("");
+                setScore(0);
+                setAttempts(0);
+                setTime(0);
+                setSolved(0);
+                setFinished(false);
+                generateExample();
+              }}
+            >
+              Restart
+            </button>
+          </div>
+        )}
       </div>
     </Layout>
   );

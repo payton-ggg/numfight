@@ -39,10 +39,11 @@ const Timeless = () => {
   }, []);
 
   useEffect(() => {
+    if (timeLeft <= 0) return;
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
-
+  
     return () => clearInterval(timer);
   }, [timeLeft]);
 

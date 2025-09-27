@@ -7,22 +7,28 @@ const FreeMode = () => {
   const [num2, setNum2] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
-
-  const generateRandomNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  const [operation, setOperation] = useState("+");
 
   const generateExample = () => {
-    const num1 = generateRandomNumber(1, 100);
-    const num2 = generateRandomNumber(1, 100);
+    const operations = ["+", "-", "*"];
+    const op = operations[Math.floor(Math.random() * operations.length)];
+    const n1 =
+      op === "*"
+        ? Math.floor(Math.random() * 10) + 1
+        : Math.floor(Math.random() * 100) + 1;
+    const n2 =
+      op === "*"
+        ? Math.floor(Math.random() * 10) + 1
+        : Math.floor(Math.random() * 100) + 1;
 
-    setNum1(num1);
-    setNum2(num2);
+    setNum1(n1);
+    setNum2(n2);
+    setOperation(op);
     setUserAnswer("");
   };
 
   const checkAnswer = () => {
-    const correctAnswer = num1 + num2;
+    const correctAnswer = eval(`${num1} ${operation} ${num2}`);
 
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
@@ -47,7 +53,7 @@ const FreeMode = () => {
         <div className="flex flex-col items-center max-md:flex-col">
           <div className="text-center text-4xl">Score: {score}</div>
           <div className="text-center text-8xl">
-            {num1} + {num2}
+            {num1} {operation} {num2}
           </div>
         </div>
         <div className="w-full max-w-sm min-w-[200px]">
@@ -60,7 +66,12 @@ const FreeMode = () => {
             onKeyDown={handleKeyDown}
           />
         </div>
-        <NumericKeyboard value={userAnswer} onChange={setUserAnswer} onEnter={checkAnswer} />
+        <NumericKeyboard
+          value={userAnswer}
+          onChange={setUserAnswer}
+          onEnter={checkAnswer}
+          allowNegative={true}
+        />
         <button
           className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
           onClick={checkAnswer}
