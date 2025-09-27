@@ -15,6 +15,8 @@ const Quadratic = ({ setShow }) => {
   const [answer2, setAnswer2] = useState("");
   const [activeInput, setActiveInput] = useState(1); // 1 или 2
   const [score, setScore] = useState(0);
+  // Добавляем режим выбора коэффициента a: "monic" (a = 1) или "positive" (a ≥ 1)
+  const [aMode, setAMode] = useState("positive");
 
   const randInt = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
@@ -24,7 +26,7 @@ const Quadratic = ({ setShow }) => {
     let r1 = randInt(-9, 9);
     let r2 = randInt(-9, 9);
     // Разрешаем 0 и равные корни; главное, что a != 0
-    let aLocal = randInt(1, 5); // положительный коэффициент для простоты чтения
+    let aLocal = aMode === "monic" ? 1 : randInt(1, 5); // a = 1 или a ≥ 1
 
     // Формируем коэффициенты из корней: a(x - r1)(x - r2) = ax^2 - a(r1+r2)x + a*r1*r2
     const bLocal = -aLocal * (r1 + r2);
@@ -42,9 +44,10 @@ const Quadratic = ({ setShow }) => {
   };
 
   useEffect(() => {
+    // При смене режима a пересоздаем уравнение
     generateEquation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [aMode]);
 
   const formatTerm = (coef, power) => {
     if (coef === 0) return "";
@@ -94,6 +97,30 @@ const Quadratic = ({ setShow }) => {
         <div className="flex flex-col items-center max-md:flex-col gap-1 max-md:gap-0">
           <div className="text-center text-5xl">Score: {score}</div>
           <div className="text-center text-5xl">Solve:</div>
+          <div className="flex gap-2 mt-2">
+            <button
+              type="button"
+              className={`px-3 py-1 rounded font-semibold ${
+                aMode === "monic"
+                  ? "bg-green-400 hover:bg-green-600 text-gray-800"
+                  : "bg-zinc-200 hover:bg-zinc-300 text-gray-800"
+              }`}
+              onClick={() => setAMode("monic")}
+            >
+              a = 1
+            </button>
+            <button
+              type="button"
+              className={`px-3 py-1 rounded font-semibold ${
+                aMode === "positive"
+                  ? "bg-green-400 hover:bg-green-600 text-gray-800"
+                  : "bg-zinc-200 hover:bg-zinc-300 text-gray-800"
+              }`}
+              onClick={() => setAMode("positive")}
+            >
+              a ≥ 1
+            </button>
+          </div>
           <div className="text-center text-5xl mt-1">{renderEquation()}</div>
         </div>
 
