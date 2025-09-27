@@ -1,4 +1,3 @@
-// eslint-disable-next-line react/prop-types
 const Layout = ({ children, setShow }) => {
   return (
     <div className="bg-[#faebd9] flex flex-col items-center mt-[5%] mx-[20%] max-md:mx-[8%] max-md:mt-[10%] rounded-xl shadow-xl h-[80vh]">

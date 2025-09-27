@@ -4,7 +4,6 @@ import Layout from "../../Layout";
 import { motion } from "framer-motion";
 import NumericKeyboard from "../Keyboard/NumericKeyboard";
 
-// eslint-disable-next-line react/prop-types
 const Fold = ({ setShow }) => {
   const [currentNumber, setCurrentNumber] = useState(0);
   const [operation, setOperation] = useState("");

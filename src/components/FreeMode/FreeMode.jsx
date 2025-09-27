@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "../../Layout";
 
-// eslint-disable-next-line react/prop-types
 const FreeMode = ({ setShow }) => {
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);

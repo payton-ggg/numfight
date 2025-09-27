@@ -6,6 +6,7 @@ import Timeless from "./components/Timeless/Timeless";
 import ExtraTime from "./components/ExtraTime/ExtraTime";
 import Multiplication from "./components/Multiplication/Multiplication";
 import Fold from "./components/Fold/Fold";
+import Quadratic from "./components/Quadratic/Quadratic";
 
 const App = () => {
   useEffect(() => {
@@ -36,6 +37,8 @@ const App = () => {
       return <Multiplication setShow={setShow} />;
     case 7:
       return <Fold setShow={setShow} />;
+    case 8:
+      return <Quadratic setShow={setShow} />;
     default:
       return <StartScreen setShow={setShow} />;
   }

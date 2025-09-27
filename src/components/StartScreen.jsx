@@ -53,6 +53,13 @@ const StartScreen = ({ setShow }) => {
           Math Blitz ⚡. Every 5 seconds, a new expression appears. After 10
           rounds, input the final answer to win!
         </div>
+        <div
+          className="mt-1 hover:cursor-pointer text-center"
+          onClick={() => setShow(8)}
+        >
+          Quadratic equations ➗. Solve ax² + bx + c = 0 with integer roots. Two
+          answers required!
+        </div>
       </div>
     </div>
   );
