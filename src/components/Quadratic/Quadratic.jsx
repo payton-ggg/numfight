@@ -65,7 +65,7 @@ const Quadratic = ({ setShow }) => {
 
   const renderEquation = () => {
     // a всегда != 0, поэтому первый член без знака у первого полож.
-    const aStr = a === 1 ? "x^2" : a === -1 ? "-x^2" : `${a}x^2`;
+    const aStr = a === 1 ? "x²" : a === -1 ? "-x²" : `${a}x²`;
     const bStr = formatTerm(b, 1);
     const cStr = formatTerm(c, 0);
     return `${aStr} ${bStr ? bStr : ""} ${cStr ? cStr : ""} = 0`;
@@ -96,7 +96,6 @@ const Quadratic = ({ setShow }) => {
       <div className="flex justify-center items-center flex-col">
         <div className="flex flex-col items-center max-md:flex-col gap-1 max-md:gap-0">
           <div className="text-center text-5xl">Score: {score}</div>
-          <div className="text-center text-5xl">Solve:</div>
           <div className="flex gap-2 mt-2">
             <button
               type="button"
