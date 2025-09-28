@@ -44,7 +44,7 @@ const Quadratic = () => {
 
   const equationStr = useMemo(() => {
     const { a, b, c } = state;
-    const aStr = a === 1 ? "x^2" : `${a}x^2`;
+    const aStr = a === 1 ? "x²" : `${a}x²`;
     const bStr = formatTerm(b, "x");
     const cStr = formatTerm(c);
     return `${aStr}${bStr}${cStr} = 0`;

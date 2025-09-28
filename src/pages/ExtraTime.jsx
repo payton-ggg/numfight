@@ -34,7 +34,12 @@ const ExtraTime = () => {
 
   const checkAnswer = () => {
     if (timeLeft <= 0) return;
-    const correctAnswer = num1 * num2;
+    const correctAnswer =
+      operation === "+"
+        ? num1 + num2
+        : operation === "-"
+        ? num1 - num2
+        : num1 * num2;
 
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
