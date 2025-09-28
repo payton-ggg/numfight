@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "../layouts/Layout";
-import NumericKeyboard from "../components/Keyboard/NumericKeyboard";
+import { PageHeader, StatChip, ExpressionCard, InputPanel } from "../ui/UIKit";
 
 const Marathon = () => {
   const [num1, setNum1] = useState(0);
@@ -72,46 +72,36 @@ const Marathon = () => {
 
   return (
     <Layout>
-      <div className="flex justify-center items-center flex-col">
-        <div className="flex flex-col items-center max-md:flex-col">
-          <div className="text-center text-4xl">Solved: {solved} / 20</div>
-          <div className="text-center text-4xl">Attempts: {attempts}</div>
-          <div className="text-center text-4xl">Time: {time}</div>
-          <div className="text-center text-8xl">
+      <div className="flex justify-center items-center flex-col px-2">
+        <PageHeader
+          title="Marathon"
+          chips={[
+            { text: `Solved: ${solved} / 20`, variant: "emerald" },
+            { text: `Attempts: ${attempts}`, variant: "orange" },
+            { text: `Time: ${time}s`, variant: "indigo" },
+          ]}
+          progress={solved / 20}
+        />
+        <ExpressionCard>
+          <div className="math-display text-5xl md:text-8xl break-words">
             {num1} {operation} {num2}
           </div>
-        </div>
+        </ExpressionCard>
         {!finished && (
-          <>
-            <div className="w-full max-w-sm min-w-[200px]">
-              <input
-                className="w-full bg-transparent placeholder:text-green-400 text-green-700 text-sm border border-green-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-green-500 hover:border-green-600 shadow-sm focus:shadow"
-                placeholder="Type here..."
-                type="number"
-                value={userAnswer}
-                onChange={(e) => setUserAnswer(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-            </div>
-            <NumericKeyboard
-              value={userAnswer}
-              onChange={setUserAnswer}
-              onEnter={checkAnswer}
-              allowNegative={true}
-            />
-            <button
-              className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
-              onClick={checkAnswer}
-            >
-              Enter
-            </button>
-          </>
+          <InputPanel
+            value={userAnswer}
+            onChange={setUserAnswer}
+            onEnter={checkAnswer}
+            placeholder="Введите ответ..."
+            allowNegative={true}
+            buttonLabel="Ответить"
+          />
         )}
         {finished && (
           <div className="mt-6 text-center">
-            <div className="text-3xl">Finished!</div>
-            <div className="text-2xl mt-2">Time: {time}s</div>
-            <div className="text-2xl">Attempts: {attempts}</div>
+            <div className="text-2xl md:text-3xl">Finished!</div>
+            <div className="text-xl md:text-2xl mt-2">Time: {time}s</div>
+            <div className="text-xl md:text-2xl">Attempts: {attempts}</div>
             <button
               className="bg-emerald-400 hover:bg-emerald-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-4"
               onClick={() => {

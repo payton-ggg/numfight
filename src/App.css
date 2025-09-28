@@ -32,4 +32,9 @@ body {
       rgba(101, 170, 188, 1) 100%
     );
   }
+  .math-display {
+    font-family: "Kanit", serif;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
 }

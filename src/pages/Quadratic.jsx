@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Layout from "../layouts/Layout";
-import NumericKeyboard from "../components/Keyboard/NumericKeyboard";
+import { PageHeader, ExpressionCard, InputPanel } from "../ui/UIKit";
 
 const Quadratic = () => {
   const [aMode, setAMode] = useState("monic"); // 'monic' => a=1, 'positive' => a>=1
@@ -65,70 +65,51 @@ const Quadratic = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col items-center gap-6">
-        <div className="text-center text-6xl">Quadratic Equations</div>
-        <div className="flex gap-2">
+      <div className="flex justify-center items-center flex-col px-2">
+        <PageHeader title="Quadratic" />
+        <div className="flex space-x-4 mb-4 mt-5">
           <button
-            className={`px-3 py-1 rounded ${
-              aMode === "monic" ? "bg-green-500" : "bg-gray-500"
-            }`}
             onClick={() => setAMode("monic")}
+            className={`px-4 py-2 rounded-md cursor-pointer ${
+              aMode === "monic"
+                ? "bg-slate-400 hover:bg-slate-500 text-white"
+                : "bg-gray-700 hover:bg-gray-600 text-white"
+            }`}
           >
-            a = 1
+            Monic (a = 1)
           </button>
           <button
-            className={`px-3 py-1 rounded ${
-              aMode === "positive" ? "bg-green-500" : "bg-gray-500"
-            }`}
             onClick={() => setAMode("positive")}
+            className={`px-4 py-2 rounded-md cursor-pointer ${
+              aMode === "positive"
+                ? "bg-slate-400 hover:bg-slate-500 text-white"
+                : "bg-gray-700 hover:bg-gray-600 text-white"
+            }`}
           >
-            a ≥ 1
+            Positive (a ≥ 1)
           </button>
         </div>
-        <div className="text-center text-5xl mt-4">{equationStr}</div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 w-full max-w-lg">
-          <div className="w-full max-w-sm min-w-[200px]">
-            <input
-              className="w-full bg-transparent placeholder:text-green-400 text-green-700 text-sm border border-green-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-green-500 hover:border-green-600 shadow-sm focus:shadow"
-              placeholder="Root x1"
-              type="number"
-              value={ans1}
-              onChange={(e) => setAns1(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && checkAnswer()}
-            />
-            <NumericKeyboard
-              value={ans1}
-              onChange={setAns1}
-              onEnter={checkAnswer}
-              allowNegative={true}
-            />
+        <ExpressionCard>
+          <div className="math-display text-2xl md:text-3xl break-words">
+            Solve: {state.a === 1 ? "" : state.a}x² + {state.b}x + {state.c} = 0
           </div>
-
-          <div className="w-full max-w-sm min-w-[200px]">
-            <input
-              className="w-full bg-transparent placeholder:text-green-400 text-green-700 text-sm border border-green-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-green-500 hover:border-green-600 shadow-sm focus:shadow"
-              placeholder="Root x2"
-              type="number"
-              value={ans2}
-              onChange={(e) => setAns2(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && checkAnswer()}
-            />
-            <NumericKeyboard
-              value={ans2}
-              onChange={setAns2}
-              onEnter={checkAnswer}
-              allowNegative={true}
-            />
-          </div>
+        </ExpressionCard>
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+          <InputPanel
+            value={ans1}
+            onChange={setAns1}
+            onEnter={checkAnswer}
+            placeholder="Root x1"
+            allowNegative={true}
+          />
+          <InputPanel
+            value={ans2}
+            onChange={setAns2}
+            onEnter={checkAnswer}
+            placeholder="Root x2"
+            allowNegative={true}
+          />
         </div>
-
-        <button
-          className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
-          onClick={checkAnswer}
-        >
-          Enter
-        </button>
       </div>
     </Layout>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "../layouts/Layout";
-import NumericKeyboard from "../components/Keyboard/NumericKeyboard";
+import { PageHeader, ExpressionCard, InputPanel } from "../ui/UIKit";
 
 const Fold = () => {
   const [number, setNumber] = useState(0);
@@ -18,7 +18,7 @@ const Fold = () => {
   const generateExample = () => {
     const operation = Math.random() < 0.5 ? "+" : "-";
     const num = generateRandomNumber(1, 100);
-  
+
     setNumber((prev) => {
       const newNumber = operation === "+" ? prev + num : prev - num;
       set_operations_log((prev) => [...prev, `${operation} ${num}`]);
@@ -44,7 +44,6 @@ const Fold = () => {
     if (!isGameOver) {
       generateExample();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isGameOver]);
 
   useEffect(() => {
@@ -77,48 +76,39 @@ const Fold = () => {
     generateExample();
     setRound(1);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Layout>
-      <div className="flex justify-center items-center flex-col">
-        <div className="flex flex-col items-center max-md:flex-col gap-8 max-md:gap-0">
-          {!isGameOver && (
-            <div className="text-center text-4xl">Round: {Math.min(round, 10)} / 10</div>
-          )}
-          <div className="text-center text-6xl">Your number:</div>
-          <div className="text-center text-8xl">{number}</div>
-        </div>
+      <div className="flex justify-center items-center flex-col px-2">
+        <PageHeader
+          title="Math Blitz"
+          chips={[
+            { text: `Round: ${Math.min(round, 10)} / 10`, variant: "indigo" },
+          ]}
+        />
+        <ExpressionCard>
+          <div className="text-2xl md:text-3xl">Your number:</div>
+          <div className="math-display text-5xl md:text-8xl">{number}</div>
+        </ExpressionCard>
         {!isGameOver ? (
-          <div className="text-center text-2xl mt-6">A new expression appears every 5 seconds...</div>
+          <div className="text-center text-2xl mt-6">
+            A new expression appears every 5 seconds...
+          </div>
         ) : (
-          <div className="w-full max-w-sm min-w-[200px]">
-            <input
-              className="w-full bg-transparent placeholder:text-green-400 text-green-700 text-sm border border-green-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-green-500 hover:border-green-600 shadow-sm focus:shadow"
-              placeholder="Type here..."
-              type="number"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            <NumericKeyboard
+          <>
+            <InputPanel
               value={inputValue}
               onChange={setInputValue}
               onEnter={checkAnswer}
+              placeholder="Type here..."
               allowNegative={true}
             />
-            <button
-              className="bg-green-400 hover:bg-green-600 duration-[400ms] text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-3"
-              onClick={checkAnswer}
-            >
-              Enter
-            </button>
             <div className="text-center text-4xl mt-6">Operations log:</div>
-            <div className="text-center text-2xl mt-2">
+            <div className="text-center text-2xl mt-2 break-words px-2">
               {operations_log.join(", ")}
             </div>
-          </div>
+          </>
         )}
       </div>
     </Layout>
