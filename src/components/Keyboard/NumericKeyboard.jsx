@@ -43,7 +43,7 @@ const NumericKeyboard = ({
 
   const Button = ({ label, onClick, variant = "default" }) => {
     const base =
-      "text-xl font-semibold py-3 rounded-md transition-colors duration-200 select-none";
+      "text-lg md:text-xl font-semibold py-2 md:py-3 rounded-md transition-colors duration-200 select-none w-full";
     const colors =
       variant === "action"
         ? "bg-green-400 hover:bg-green-600 text-gray-800"
@@ -70,7 +70,7 @@ const NumericKeyboard = ({
         {allowNegative ? (
           <Button label="±" onClick={handleToggleMinus} />
         ) : (
-          <div className="py-3" />
+          <div className="py-2 md:py-3" />
         )}
         <Button label="⌫" onClick={handleBackspace} />
         <Button label="C" onClick={handleClear} variant="danger" />
