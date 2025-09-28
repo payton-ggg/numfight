@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import Layout from "../layouts/Layout";
 import { PageHeader, ExpressionCard, InputPanel } from "../ui/UIKit";
+import Message from "../ui/Message";
 
 const Quadratic = () => {
   const [aMode, setAMode] = useState("monic"); // 'monic' => a=1, 'positive' => a>=1
   const [state, setState] = useState({ a: 1, b: 0, c: 0, r1: 0, r2: 0 });
   const [ans1, setAns1] = useState("");
   const [ans2, setAns2] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   const randomInt = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
@@ -59,12 +61,15 @@ const Quadratic = () => {
     ) {
       generateEquation();
     } else {
-      // shake or feedback could be added
+      setShowMessage(true);
+      setTimeout(() => setShowMessage(false), 3000);
     }
   };
 
   return (
     <Layout>
+      <Message text="Incorrect answer" show={showMessage} />
+
       <div className="flex justify-center items-center flex-col px-2">
         <PageHeader title="Quadratic" />
         <div className="flex space-x-4 mb-4 mt-5">
@@ -91,7 +96,7 @@ const Quadratic = () => {
         </div>
         <ExpressionCard>
           <div className="math-display text-2xl md:text-3xl break-words">
-            Solve: {state.a === 1 ? "" : state.a}x² + {state.b}x + {state.c} = 0
+            Solve: {equationStr}
           </div>
         </ExpressionCard>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
