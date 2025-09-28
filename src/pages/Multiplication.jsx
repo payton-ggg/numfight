@@ -40,7 +40,10 @@ const Multiplication = () => {
   return (
     <Layout>
       <div className="flex justify-center items-center flex-col px-2">
-        <PageHeader title="Multiplication" chips={[{ text: `Score: ${score}`, variant: "emerald" }]} />
+        <PageHeader
+          title="Multiplication"
+          chips={[{ text: `Score: ${score}`, variant: "emerald" }]}
+        />
         <ExpressionCard>
           <div className="math-display text-5xl md:text-8xl break-words">
             {num1} × {num2}
@@ -51,6 +54,7 @@ const Multiplication = () => {
           onChange={setUserAnswer}
           onEnter={checkAnswer}
           placeholder="Type here..."
+          buttonLabel="Enter"
         />
       </div>
     </Layout>

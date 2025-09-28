@@ -94,7 +94,7 @@ const Marathon = () => {
             onEnter={checkAnswer}
             placeholder="Введите ответ..."
             allowNegative={true}
-            buttonLabel="Ответить"
+            buttonLabel="Enter"
           />
         )}
         {finished && (

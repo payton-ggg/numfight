@@ -66,7 +66,7 @@ const FreeMode = () => {
           placeholder="Type here..."
           allowNegative={true}
           color="sky"
-          buttonLabel="Ответить"
+          buttonLabel="Enter"
           inputKeyDown={handleKeyDown}
         />
       </div>

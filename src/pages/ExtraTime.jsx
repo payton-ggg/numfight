@@ -92,7 +92,7 @@ const ExtraTime = () => {
           onEnter={checkAnswer}
           placeholder="Type here..."
           allowNegative={true}
-          buttonLabel="Ответить"
+          buttonLabel="Enter"
           inputKeyDown={(e) => e.key === "Enter" && checkAnswer()}
         />
       </div>
