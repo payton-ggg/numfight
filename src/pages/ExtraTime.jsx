@@ -43,7 +43,7 @@ const ExtraTime = () => {
 
     if (parseInt(userAnswer) === correctAnswer) {
       setScore(score + 1);
-      setTimeLeft((prev) => prev + 2);
+      setTimeLeft((prev) => prev + 5);
     } else {
       setMistakes(mistakes + 1);
     }
