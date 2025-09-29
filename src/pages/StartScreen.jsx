@@ -69,8 +69,8 @@ const StartScreen = () => {
             Survival 🛡️
           </div>
           <p className="mt-2 text-slate-700">
-            Start with 10 seconds. +2 seconds for each correct answer. How long
-            can you last?
+            Start with 10 seconds. +3.5 seconds for each correct answer. How
+            long can you last?
           </p>
           <Link
             className="mt-3 inline-flex items-center gap-2 text-white bg-orange-500 hover:bg-orange-600 border border-slate-700 py-2 px-4 rounded-lg"
