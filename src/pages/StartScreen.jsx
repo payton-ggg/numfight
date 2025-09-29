@@ -1,40 +1,134 @@
 import { Link } from "react-router-dom";
+import Layout from "../layouts/Layout";
+import { PageHeader, StatChip } from "../ui/UIKit";
 
 const StartScreen = () => {
   return (
-    <div className="bg-[#faebd9] flex flex-col items-center mt-[5%] mx-[20%] max-md:mx-[8%] max-md:mt-[10%] rounded-xl shadow-xl h-[80vh]">
-      <div className="flex flex-row w-full justify-between">
-        <div className="flex flex-row gap-1 mt-2 ml-2">
-          <div className="h-4 w-4 border-fancy-1 bg-[#fea699] border-2 border-black" />
-          <div className="h-4 w-4 border-fancy-2 bg-[#ffae9d] border-2 border-black" />
-          <div className="h-4 w-4 border-fancy-3 bg-[#807b82] border-2 border-black" />
+    <Layout>
+      <PageHeader
+        title="Choose a mode"
+        chips={[
+          { text: "7 modes", variant: "sky" },
+          { text: "Practice & challenge", variant: "indigo" },
+        ]}
+      />
+
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+        {/* Marathon */}
+        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
+          <div className="text-2xl font-semibold text-slate-800">
+            Marathon 🏃
+          </div>
+          <p className="mt-2 text-slate-700">
+            Solve 20 problems as fast as you can. Test your speed and accuracy!
+          </p>
+          <Link
+            className="mt-3 inline-flex items-center gap-2 text-white bg-emerald-500 hover:bg-emerald-600 border border-slate-700 py-2 px-4 rounded-lg"
+            to="/marathon"
+          >
+            Play
+          </Link>
+        </div>
+
+        {/* Free mode */}
+        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
+          <div className="text-2xl font-semibold text-slate-800">
+            Free Mode 🔓
+          </div>
+          <p className="mt-2 text-slate-700">
+            No timer or limits — just solve problems and rack up a high score.
+          </p>
+          <Link
+            className="mt-3 inline-flex items-center gap-2 text-white bg-indigo-500 hover:bg-indigo-600 border border-slate-700 py-2 px-4 rounded-lg"
+            to="/free"
+          >
+            Play
+          </Link>
+        </div>
+
+        {/* Timeless */}
+        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
+          <div className="text-2xl font-semibold text-slate-800">
+            Minute Mode ⏰
+          </div>
+          <p className="mt-2 text-slate-700">
+            You have 60 seconds to solve as many problems as possible. Time
+            starts now!
+          </p>
+          <Link
+            className="mt-3 inline-flex items-center gap-2 text-white bg-sky-500 hover:bg-sky-600 border border-slate-700 py-2 px-4 rounded-lg"
+            to="/timeless"
+          >
+            Play
+          </Link>
+        </div>
+
+        {/* Extra Time / Survival */}
+        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
+          <div className="text-2xl font-semibold text-slate-800">
+            Survival 🛡️
+          </div>
+          <p className="mt-2 text-slate-700">
+            Start with 10 seconds. +2 seconds for each correct answer. How long
+            can you last?
+          </p>
+          <Link
+            className="mt-3 inline-flex items-center gap-2 text-white bg-orange-500 hover:bg-orange-600 border border-slate-700 py-2 px-4 rounded-lg"
+            to="/extra-time"
+          >
+            Play
+          </Link>
+        </div>
+
+        {/* Multiplication */}
+        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
+          <div className="text-2xl font-semibold text-slate-800">
+            Multiplication ✖️
+          </div>
+          <p className="mt-2 text-slate-700">
+            Only multiplication problems. Perfect for practicing the times
+            tables!
+          </p>
+          <Link
+            className="mt-3 inline-flex items-center gap-2 text-white bg-violet-500 hover:bg-violet-600 border border-slate-700 py-2 px-4 rounded-lg"
+            to="/multiplication"
+          >
+            Play
+          </Link>
+        </div>
+
+        {/* Math Blitz / Fold */}
+        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
+          <div className="text-2xl font-semibold text-slate-800">Blitz ⚡</div>
+          <p className="mt-2 text-slate-700">
+            A new expression appears every 5 seconds. After 10 rounds, enter the
+            final answer!
+          </p>
+          <Link
+            className="mt-3 inline-flex items-center gap-2 text-white bg-cyan-500 hover:bg-cyan-600 border border-slate-700 py-2 px-4 rounded-lg"
+            to="/fold"
+          >
+            Play
+          </Link>
+        </div>
+
+        {/* Quadratic */}
+        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
+          <div className="text-2xl font-semibold text-slate-800">
+            Quadratic Equations ➗
+          </div>
+          <p className="mt-2 text-slate-700">
+            Solve ax² + bx + c = 0 with integer roots. Enter both answers!
+          </p>
+          <Link
+            className="mt-3 inline-flex items-center gap-2 text-white bg-rose-500 hover:bg-rose-600 border border-slate-700 py-2 px-4 rounded-lg"
+            to="/quadratic"
+          >
+            Play
+          </Link>
         </div>
       </div>
-      <div>
-        <div className="text-6xl text-center text-slate-700">MathQuest</div>
-        <Link className="mt-6 hover:cursor-pointer text-center block" to="/marathon">
-          Marathon 🏃. Answer 20 math exercises as quickly as possible. Test your speed and accuracy!
-        </Link>
-        <Link className="mt-1 hover:cursor-pointer text-center block" to="/free">
-          Free mode 🔓. No time limits, no restrictions — just focus on solving problems and accumulating a high score
-        </Link>
-        <Link className="mt-1 hover:cursor-pointer text-center block" to="/timeless">
-          Time is of the essence ⏰. You have 60 seconds to solve as many problems as possible. The clock is ticking!
-        </Link>
-        <Link className="mt-1 hover:cursor-pointer text-center block" to="/extra-time">
-          Survival mode 🛡️. Start with 10 seconds on the clock. For every correct answer, earn an extra 2 seconds. How long can you last?
-        </Link>
-        <Link className="mt-1 hover:cursor-pointer text-center block" to="/multiplication">
-          Multiplication ✖️. Only multiplication problems. Perfect for practicing your times tables!
-        </Link>
-        <Link className="mt-1 hover:cursor-pointer text-center block" to="/fold">
-          Math Blitz ⚡. Every 5 seconds, a new expression appears. After 10 rounds, input the final answer to win!
-        </Link>
-        <Link className="mt-1 hover:cursor-pointer text-center block" to="/quadratic">
-          Quadratic equations ➗. Solve ax² + bx + c = 0 with integer roots. Two answers required!
-        </Link>
-      </div>
-    </div>
+    </Layout>
   );
 };
 
