@@ -15,7 +15,10 @@ const Timeless = () => {
     const operation = operations[Math.floor(Math.random() * operations.length)];
 
     const num1 = Math.floor(Math.random() * 100) + 1;
-    const num2 = Math.floor(Math.random() * 100) + 1;
+    const num2 =
+      operation === "*"
+        ? Math.floor(Math.random() * 10) + 1
+        : Math.floor(Math.random() * 100) + 1;
 
     setNum1(num1);
     setNum2(num2);

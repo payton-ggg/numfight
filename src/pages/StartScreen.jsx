@@ -97,21 +97,6 @@ const StartScreen = () => {
           </Link>
         </div>
 
-        {/* Math Blitz / Fold */}
-        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
-          <div className="text-2xl font-semibold text-slate-800">Blitz ⚡</div>
-          <p className="mt-2 text-slate-700">
-            A new expression appears every 5 seconds. After 10 rounds, enter the
-            final answer!
-          </p>
-          <Link
-            className="mt-3 inline-flex items-center gap-2 text-white bg-cyan-500 hover:bg-cyan-600 border border-slate-700 py-2 px-4 rounded-lg"
-            to="/fold"
-          >
-            Play
-          </Link>
-        </div>
-
         {/* Quadratic */}
         <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
           <div className="text-2xl font-semibold text-slate-800">
@@ -123,6 +108,21 @@ const StartScreen = () => {
           <Link
             className="mt-3 inline-flex items-center gap-2 text-white bg-rose-500 hover:bg-rose-600 border border-slate-700 py-2 px-4 rounded-lg"
             to="/quadratic"
+          >
+            Play
+          </Link>
+        </div>
+
+        {/* Math Blitz / Fold */}
+        <div className="group border-2 border-slate-700 rounded-2xl bg-white/60 backdrop-blur-md shadow-lg p-5 hover:shadow-xl transition">
+          <div className="text-2xl font-semibold text-slate-800">Blitz ⚡</div>
+          <p className="mt-2 text-slate-700">
+            A new expression appears every 5 seconds. After 10 rounds, enter the
+            final answer!
+          </p>
+          <Link
+            className="mt-3 inline-flex items-center gap-2 text-white bg-cyan-500 hover:bg-cyan-600 border border-slate-700 py-2 px-4 rounded-lg"
+            to="/fold"
           >
             Play
           </Link>
