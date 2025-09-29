@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
           className="text-4xl md:text-6xl text-center text-slate-700 hover:cursor-pointer block"
           to="/"
         >
-          MathQuest
+          NumFight
         </Link>
         {children}
       </div>
