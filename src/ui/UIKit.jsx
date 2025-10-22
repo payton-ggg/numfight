@@ -1,4 +1,5 @@
 // UI Kit: reusable components for consistent design across pages
+import { useRef, useState } from "react";
 import NumericKeyboard from "../components/Keyboard/NumericKeyboard";
 
 // StatChip: pill-like chip to display small stats
@@ -68,7 +69,7 @@ export const InputPanel = ({
   allowNegative = true,
   color = "emerald",
   inputKeyDown,
-  buttonLabel = "Enter",
+  buttonLabel = "Submit",
 }) => {
   const colorMap = {
     emerald: {
@@ -89,15 +90,62 @@ export const InputPanel = ({
   };
   const c = colorMap[color] ?? colorMap.emerald;
 
+  const inputRef = useRef(null);
+  const [focused, setFocused] = useState(false);
+
+  const handleKeyDown = (e) => {
+    // allow custom handler
+    if (typeof inputKeyDown === "function") inputKeyDown(e);
+
+    const k = e.key;
+    const v = `${value ?? ""}`;
+
+    // Digits (including numpad)
+    if (/^[0-9]$/.test(k)) {
+      e.preventDefault();
+      onChange?.(v + k);
+      return;
+    }
+    // Backspace
+    if (k === "Backspace") {
+      e.preventDefault();
+      onChange?.(v.slice(0, -1));
+      return;
+    }
+    // Delete clears
+    if (k === "Delete") {
+      e.preventDefault();
+      onChange?.("");
+      return;
+    }
+    // Minus toggle
+    if (k === "-" && allowNegative) {
+      e.preventDefault();
+      if (!v) onChange?.("-");
+      else if (v.startsWith("-")) onChange?.(v.slice(1));
+      else onChange?.("-" + v);
+      return;
+    }
+    // Enter submits
+    if (k === "Enter") {
+      e.preventDefault();
+      onEnter?.();
+      return;
+    }
+  };
+
   return (
     <div className="mt-4 w-full text-center max-w-md bg-[#f8f3e8] border border-slate-300 rounded-xl shadow-md p-3 md:p-4">
       <input
+        ref={inputRef}
         className={`w-full bg-transparent text-slate-800 text-base md:text-sm rounded-md px-3 py-2 transition duration-300 ease focus:outline-none shadow-sm focus:shadow border ${c.input}`}
         placeholder={placeholder}
         type="number"
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
-        onKeyDown={inputKeyDown}
+        onKeyDown={handleKeyDown}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
       />
       <div className="mt-2 flex justify-center">
         <NumericKeyboard

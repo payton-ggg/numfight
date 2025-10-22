@@ -8,7 +8,6 @@
 const NumericKeyboard = ({
   value = "",
   onChange,
-  // eslint-disable-next-line no-unused-vars
   onEnter,
   allowNegative = true,
   className = "",
