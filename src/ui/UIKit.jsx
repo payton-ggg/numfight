@@ -1,6 +1,61 @@
 // UI Kit: reusable components for consistent design across pages
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NumericKeyboard from "../components/Keyboard/NumericKeyboard";
+
+// Global keyboard support: active input registry and listener
+let activeInputApi = null;
+let globalKeyListenerAttached = false;
+
+const handleGlobalKeyDown = (e) => {
+  const t = e.target;
+  const tag = t?.tagName?.toLowerCase();
+  const isTextInput = tag === "input" || tag === "textarea" || t?.isContentEditable;
+  if (isTextInput) return;
+  if (!activeInputApi) return;
+
+  const v = `${activeInputApi.getValue?.() ?? ""}`;
+  const k = e.key;
+
+  if (/^[0-9]$/.test(k)) {
+    e.preventDefault();
+    activeInputApi.setValue?.(v + k);
+    return;
+  }
+  if (k === "Backspace") {
+    e.preventDefault();
+    activeInputApi.setValue?.(v.slice(0, -1));
+    return;
+  }
+  if (k === "Delete") {
+    e.preventDefault();
+    activeInputApi.setValue?.("");
+    return;
+  }
+  if (k === "-" && activeInputApi.allowNegative) {
+    e.preventDefault();
+    if (!v) activeInputApi.setValue?.("-");
+    else if (v.startsWith("-")) activeInputApi.setValue?.(v.slice(1));
+    else activeInputApi.setValue?.("-" + v);
+    return;
+  }
+  if (k === "Enter") {
+    e.preventDefault();
+    activeInputApi.onEnter?.();
+    return;
+  }
+};
+
+const setActiveInputApi = (api) => {
+  activeInputApi = api;
+  if (!globalKeyListenerAttached && typeof window !== "undefined") {
+    window.addEventListener("keydown", handleGlobalKeyDown, true);
+    globalKeyListenerAttached = true;
+  }
+};
+
+const clearActiveInputApi = (api) => {
+  if (activeInputApi === api) activeInputApi = null;
+};
 
 // StatChip: pill-like chip to display small stats
 export const StatChip = ({ children, variant = "emerald" }) => {
@@ -70,6 +125,8 @@ export const InputPanel = ({
   color = "emerald",
   inputKeyDown,
   buttonLabel = "Submit",
+  globalKeyboard = true,
+  isPrimary = false,
 }) => {
   const colorMap = {
     emerald: {
@@ -90,22 +147,35 @@ export const InputPanel = ({
   };
   const c = colorMap[color] ?? colorMap.emerald;
 
+  useEffect(() => {
+    if (globalKeyboard && (isPrimary || !activeInputApi)) {
+      setActiveInputApi(apiRef.current);
+    }
+    return () => {
+      clearActiveInputApi(apiRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const inputRef = useRef(null);
   const [focused, setFocused] = useState(false);
 
-  const handleKeyDown = (e) => {
-    // allow custom handler
-    if (typeof inputKeyDown === "function") inputKeyDown(e);
+  const apiRef = useRef({
+    getValue: () => "",
+    setValue: () => {},
+    onEnter: () => {},
+    allowNegative,
+  });
+  apiRef.current.getValue = () => `${value ?? ""}`;
+  apiRef.current.setValue = (next) => onChange?.(next);
+  apiRef.current.onEnter = () => onEnter?.();
+  apiRef.current.allowNegative = allowNegative;
 
+  const handleKeyDown = (e) => {
+    if (typeof inputKeyDown === "function") inputKeyDown(e);
     const k = e.key;
     const v = `${value ?? ""}`;
 
-    // Digits (including numpad)
-    if (/^[0-9]$/.test(k)) {
-      e.preventDefault();
-      onChange?.(v + k);
-      return;
-    }
     // Backspace
     if (k === "Backspace") {
       e.preventDefault();
@@ -132,17 +202,33 @@ export const InputPanel = ({
       onEnter?.();
       return;
     }
+    // Let digits and other keys pass to native input
+  };
+
+  const onChangeInput = (e) => {
+    const raw = e.target.value;
+    const valid = allowNegative ? /^-?\d*$/.test(raw) : /^\d*$/.test(raw);
+    if (!valid) return;
+    onChange?.(raw);
+    // любая активность делает эту панель активной
+    if (globalKeyboard) setActiveInputApi(apiRef.current);
   };
 
   return (
-    <div className="mt-4 w-full text-center max-w-md bg-[#f8f3e8] border border-slate-300 rounded-xl shadow-md p-3 md:p-4">
+    <div
+      className="mt-4 w-full text-center max-w-md bg-[#f8f3e8] border border-slate-300 rounded-xl shadow-md p-3 md:p-4"
+      onMouseEnter={() => setActiveInputApi(apiRef.current)}
+      onTouchStart={() => setActiveInputApi(apiRef.current)}
+    >
       <input
         ref={inputRef}
         className={`w-full bg-transparent text-slate-800 text-base md:text-sm rounded-md px-3 py-2 transition duration-300 ease focus:outline-none shadow-sm focus:shadow border ${c.input}`}
         placeholder={placeholder}
-        type="number"
+        type="text"
+        inputMode="numeric"
+        enterKeyHint="done"
         value={value}
-        onChange={(e) => onChange?.(e.target.value)}
+        onChange={onChangeInput}
         onKeyDown={handleKeyDown}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
