@@ -9,7 +9,8 @@ let globalKeyListenerAttached = false;
 const handleGlobalKeyDown = (e) => {
   const t = e.target;
   const tag = t?.tagName?.toLowerCase();
-  const isTextInput = tag === "input" || tag === "textarea" || t?.isContentEditable;
+  const isTextInput =
+    tag === "input" || tag === "textarea" || t?.isContentEditable;
   if (isTextInput) return;
   if (!activeInputApi) return;
 
@@ -154,7 +155,6 @@ export const InputPanel = ({
     return () => {
       clearActiveInputApi(apiRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const inputRef = useRef(null);
